@@ -10,6 +10,7 @@ import UIKit
 final class BasicFlowLayoutViewController: UIViewController {
     
     // MARK: - Constants
+    
     private enum Constant {
         static let columns: CGFloat = 3
         static let inset: CGFloat = 8
@@ -17,9 +18,13 @@ final class BasicFlowLayoutViewController: UIViewController {
         static let lineSpacing: CGFloat = 8
     }
     
+    private var isRandom = false
+    
     // MARK: - Data
     
     let characters = Characters.loadCharacters()
+    
+    // MARK: - CollectionView
     
     private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -31,13 +36,18 @@ final class BasicFlowLayoutViewController: UIViewController {
         collectionView.backgroundColor = .systemMint
         return collectionView
     }()
+    
+    // MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         prepareView()
         configureCollectionView()
+        addRefreshControl()
     }
+    
+    // MARK: - Private Methods
     
     private func prepareView() {
         view.addSubview(collectionView)
@@ -53,6 +63,22 @@ final class BasicFlowLayoutViewController: UIViewController {
         collectionView.register(CharacterCell.self, forCellWithReuseIdentifier: CharacterCell.reuseIdetifier)
         collectionView.dataSource = self
         collectionView.delegate = self
+    }
+    
+    private func addRefreshControl() {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(
+            self,
+            action: #selector(refreshCollectionView),
+            for: .primaryActionTriggered
+        )
+        collectionView.refreshControl = refreshControl
+    }
+    
+    @objc private func refreshCollectionView() {
+        isRandom = true
+        collectionView.reloadData()
+        collectionView.refreshControl?.endRefreshing()
     }
 }
 
@@ -86,7 +112,12 @@ extension BasicFlowLayoutViewController: UICollectionViewDataSource {
 extension BasicFlowLayoutViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = Int((collectionView.frame.width / Constant.columns) - (Constant.inset + Constant.spacing))
+        var width: Int
+        if isRandom {
+            width = 64 * Int(arc4random_uniform(UInt32(3) + 1))
+        } else {
+            width = Int((collectionView.frame.width / Constant.columns) - (Constant.inset + Constant.spacing))
+        }
         
         return CGSize(width: width, height: width)
     }
