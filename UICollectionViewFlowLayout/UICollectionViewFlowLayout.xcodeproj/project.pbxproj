@@ -14,6 +14,9 @@
 		92B95B5F29FD8AD900C6E222 /* CharacterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B95B5E29FD8AD900C6E222 /* CharacterCell.swift */; };
 		92B95B6229FD933500C6E222 /* Character_Data.plist in Resources */ = {isa = PBXBuildFile; fileRef = 92B95B6029FD933500C6E222 /* Character_Data.plist */; };
 		92B95B6329FD933500C6E222 /* Characters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B95B6129FD933500C6E222 /* Characters.swift */; };
+		92B95B6529FDA99700C6E222 /* CarouselLayoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B95B6429FDA99700C6E222 /* CarouselLayoutViewController.swift */; };
+		92B95B6829FDAAEE00C6E222 /* CharacterCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B95B6729FDAAEE00C6E222 /* CharacterCardCell.swift */; };
+		92B95B6A29FDAF3100C6E222 /* CarouselLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B95B6929FDAF3100C6E222 /* CarouselLayout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +29,9 @@
 		92B95B5E29FD8AD900C6E222 /* CharacterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCell.swift; sourceTree = "<group>"; };
 		92B95B6029FD933500C6E222 /* Character_Data.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Character_Data.plist; sourceTree = "<group>"; };
 		92B95B6129FD933500C6E222 /* Characters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Characters.swift; sourceTree = "<group>"; };
+		92B95B6429FDA99700C6E222 /* CarouselLayoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselLayoutViewController.swift; sourceTree = "<group>"; };
+		92B95B6729FDAAEE00C6E222 /* CharacterCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCardCell.swift; sourceTree = "<group>"; };
+		92B95B6929FDAF3100C6E222 /* CarouselLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselLayout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +66,7 @@
 			children = (
 				92B95B5C29FD88E300C6E222 /* Controllers */,
 				92B95B5D29FD88EF00C6E222 /* Views */,
+				92B95B6629FDA9B900C6E222 /* Layout */,
 				92B95B5729FD889300C6E222 /* Data */,
 				92B95B4329FD884800C6E222 /* AppDelegate.swift */,
 				92B95B4C29FD884900C6E222 /* Assets.xcassets */,
@@ -82,6 +89,7 @@
 			isa = PBXGroup;
 			children = (
 				92B95B4729FD884800C6E222 /* BasicFlowLayoutViewController.swift */,
+				92B95B6429FDA99700C6E222 /* CarouselLayoutViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -90,8 +98,17 @@
 			isa = PBXGroup;
 			children = (
 				92B95B5E29FD8AD900C6E222 /* CharacterCell.swift */,
+				92B95B6729FDAAEE00C6E222 /* CharacterCardCell.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		92B95B6629FDA9B900C6E222 /* Layout */ = {
+			isa = PBXGroup;
+			children = (
+				92B95B6929FDAF3100C6E222 /* CarouselLayout.swift */,
+			);
+			path = Layout;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -166,9 +183,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				92B95B4829FD884800C6E222 /* BasicFlowLayoutViewController.swift in Sources */,
+				92B95B6A29FDAF3100C6E222 /* CarouselLayout.swift in Sources */,
 				92B95B4429FD884800C6E222 /* AppDelegate.swift in Sources */,
+				92B95B6529FDA99700C6E222 /* CarouselLayoutViewController.swift in Sources */,
 				92B95B5F29FD8AD900C6E222 /* CharacterCell.swift in Sources */,
 				92B95B6329FD933500C6E222 /* Characters.swift in Sources */,
+				92B95B6829FDAAEE00C6E222 /* CharacterCardCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
