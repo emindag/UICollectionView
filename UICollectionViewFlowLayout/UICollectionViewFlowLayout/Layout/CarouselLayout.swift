@@ -10,6 +10,15 @@ import UIKit
 final class CarouselLayout: UICollectionViewFlowLayout {
     private let standardItemAlpha: CGFloat = 0.5
     private let standardItemScale: CGFloat = 0.5
+    private var isSetup = true
+    
+    override func prepare() {
+        super.prepare()
+        if isSetup {
+            setupCollectionView()
+            isSetup = false
+        }
+    }
     
     override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
         true
@@ -43,5 +52,34 @@ final class CarouselLayout: UICollectionViewFlowLayout {
         attributes.alpha = alpha
         attributes.transform3D = CATransform3DScale(CATransform3DIdentity, scale, scale, 1)
         attributes.zIndex = Int(10 * alpha)
+    }
+    
+    override func targetContentOffset(forProposedContentOffset proposedContentOffset: CGPoint) -> CGPoint {
+        let layoutAttributes = layoutAttributesForElements(in: collectionView!.bounds)
+        let center = collectionView!.bounds.size.height / 2
+        let proposedContentOffsetCenterOrigin = proposedContentOffset.y + center
+        
+        let closest = layoutAttributes!.sorted {
+            abs($0.center.y - proposedContentOffsetCenterOrigin)
+            < abs($1.center.y - proposedContentOffsetCenterOrigin)
+        }.first ?? UICollectionViewLayoutAttributes()
+        
+        let targetContentOffset = CGPoint(x: proposedContentOffset.x, y: floor(closest.center.y - center))
+        
+        return targetContentOffset
+    }
+    
+    private func setupCollectionView() {
+        collectionView?.decelerationRate = UIScrollView.DecelerationRate.fast
+        let collectionSize = collectionView!.bounds.size
+        let yInset = (collectionSize.height - itemSize.height) / 2
+        let xInset = (collectionSize.width - itemSize.width) / 2
+        
+        sectionInset = UIEdgeInsets(
+            top: yInset,
+            left: xInset,
+            bottom: yInset,
+            right: xInset
+        )
     }
 }

@@ -38,6 +38,12 @@ final class CharacterCardCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        characterImage.image = nil
+        characterTitle.text = nil
+    }
+    
     private func prepareCell() {
         contentView.backgroundColor = .systemCyan
         contentView.layer.cornerRadius = 12
